@@ -27,7 +27,6 @@ void update_WTP_ids();
 // Initiate
 struct WTP_connected *initiate_WTP(int WTP_id, int socket, char* macaddr,
 		char* ipaddr, int port, char* WTP_name) {
-	printf("getting here.");
 	struct WTP_connected *ptr = new WTP_connected;
 
 	if (ptr == NULL) {
@@ -135,12 +134,13 @@ struct WTP_connected *search_node_by_socket(int socket) {
 	prev = g_WTP_head;
 	int found_socket = 0;
 	while (prev != NULL) {
-		if (prev->socket != socket){
-			printf("search for socket %d not matched with WTP-ID %d\n", prev->socket, prev->WTP_id);
+		if (prev->socket != socket) {
+			printf("search for socket %d not matched with WTP-ID %d\n",
+					prev->socket, prev->WTP_id);
 			prev = prev->next;
-		}
-		else {
-			printf("search for socket %d matched with WTP-ID %d\n", prev->socket, prev->WTP_id);
+		} else {
+			printf("search for socket %d matched with WTP-ID %d\n",
+					prev->socket, prev->WTP_id);
 			found_socket++;
 			matched = prev;
 			prev = prev->next;
@@ -149,7 +149,8 @@ struct WTP_connected *search_node_by_socket(int socket) {
 
 	if (found_socket > 1) {
 		//multiple WTP with same socket
-		perror("Should not reach here!! Duplicate/multiple WTP with same socket!");
+		perror(
+				"Should not reach here!! Duplicate/multiple WTP with same socket!");
 		return 0;
 	} else if (found_socket == 0) {
 		//no WTP found
@@ -160,11 +161,11 @@ struct WTP_connected *search_node_by_socket(int socket) {
 
 }
 
-void update_WTP_ids(){
+void update_WTP_ids() {
 	int id_counter = 0;
 	struct WTP_connected *temp;
 	temp = g_WTP_head;
-	while(temp != NULL){
+	while (temp != NULL) {
 		temp->WTP_id = id_counter;
 		id_counter++;
 		temp = temp->next;

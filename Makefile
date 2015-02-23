@@ -1,6 +1,6 @@
 all:
 	g++ AC.cpp -o AC
-	g++ client.cpp -o client
+	g++ WTP.cpp -o WTP
 clean:
-	rm -f *.o *~ client server AC
+	rm -f *.o *~ WTP AC
 
